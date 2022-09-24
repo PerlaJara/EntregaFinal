@@ -42,6 +42,7 @@
             <td>{{usuario.fecha_creacion}}</td>
             <td>{{post.usuario_id}}</td>
             <td><a href="{% url 'editar_post' post.id %}" class="btn btn-outline-light">Editar</a></td>
+            <td><a href="{% url 'eliminar_post' post.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente post?: {{post.titulo}}');">Eliminar</a></td>
         </tr>
         {% endfor %}
     </tbody>

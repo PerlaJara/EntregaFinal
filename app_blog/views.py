@@ -108,7 +108,7 @@ def post_formulario(request):
             data = formulario.cleaned_data
             post = Post(titulo=data['titulo'], subtitulo=data['subtitulo'], imagen=data['imagen'], cuerpo=data['cuerpo'], autor=data['autor'], usuario_id=data['usuario_id'])
             post.save()
-            return render(request, "app_blog/base.html", {"exitoso": True})
+            return render(request, "app_blog/inicio.html", {"exitoso": True})
     else:
         formulario= PostFormulario()
     return render(request, "app_blog/crear_post.html", {"formulario": formulario})
