@@ -26,16 +26,18 @@ def blog(request):
 
     return render(request, "app_blog/inicio.html", {'blogs' : blogs})
 
-def login(request):
-    return render(request, "app_blog/login.html")
+#def login(request):
+#    return render(request, "app_blog/login.html")
 
 
 # USUARIO
 
+@login_required
 def usuario(request):
     usuarios = Usuario.objects.all()
     return render(request, "app_blog/usuarios.html", {'usuarios' : usuarios})
 
+@login_required
 def usuario_formulario(request):
     if request.method == 'POST':
         formulario= UsuarioFormulario(request.POST)
@@ -49,9 +51,11 @@ def usuario_formulario(request):
         formulario= UsuarioFormulario()
     return render(request, "app_blog/crear_usuario.html", {"formulario": formulario})
 
+@login_required
 def buscar_usuario_form(request):
     return render(request, "app_blog/buscar_usuario.html")
 
+@login_required
 def buscar_usuario(request):
     if request.GET["valor"]:
         valor = request.GET["valor"]
@@ -60,7 +64,7 @@ def buscar_usuario(request):
     else:
         return render(request, "app_blog/usuarios.html", {'usuarios': []})
 
-
+@login_required
 def editar_usuario(request, id):
     # Recibe param profesor id, con el que obtenemos el profesor
     usuario = Usuario.objects.get(id=id)
@@ -96,10 +100,12 @@ def eliminar_usuario(request, id):
 
 # POST
 
+@login_required
 def post(request):
     posts = Post.objects.all()
     return render(request, "app_blog/posts.html", {'posts' : posts})
 
+@login_required
 def post_formulario(request):
     if request.method == 'POST':
         formulario= PostFormulario(request.POST, request.FILES)
@@ -113,6 +119,7 @@ def post_formulario(request):
         formulario= PostFormulario()
     return render(request, "app_blog/crear_post.html", {"formulario": formulario})
 
+@login_required
 def editar_post(request, id):
     # Recibe param profesor id, con el que obtenemos el profesor
     post = Post.objects.get(id=id)
@@ -141,7 +148,7 @@ def editar_post(request, id):
         formulario = PostFormulario(initial=inicial)
     return render(request, "app_blog/crear_post.html", {"formulario": formulario})
 
-
+@login_required
 def eliminar_post(request, id):
     post = Post.objects.get(id=id)
     post.delete()
@@ -150,10 +157,12 @@ def eliminar_post(request, id):
 
 # COMENTARIO
 
+@login_required
 def comentario(request):
     comentarios = Comentario.objects.all()
     return render(request, "app_blog/comentarios.html", {'comentarios' : comentarios})
 
+@login_required
 def comentario_formulario(request):
     if request.method == 'POST':
         formulario= ComentarioFormulario(request.POST)
@@ -167,7 +176,7 @@ def comentario_formulario(request):
         formulario= ComentarioFormulario()
     return render(request, "app_blog/crear_comentario.html", {"formulario": formulario})
 
-
+@login_required
 def editar_comentario(request, id):
     # Recibe param profesor id, con el que obtenemos el profesor
     comentario = Comentario.objects.get(id=id)
@@ -196,8 +205,57 @@ def editar_comentario(request, id):
         formulario = ComentarioFormulario(initial=inicial)
     return render(request, "app_blog/crear_comentario.html", {"formulario": formulario})
 
-
+@login_required
 def eliminar_comentario(request, id):
     comentario = Comentario.objects.get(id=id)
     comentario.delete()
     return redirect(reverse('comentario'))    
+
+
+
+
+# LOGIN 
+
+def register(request):
+    mensaje = ''
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return render(request, "app_blog/about.html", {"mensaje": "Usuario Creado :)"})
+        else:
+            mensaje = 'Cometiste un error en el registro'
+    formulario = UserRegisterForm()  # Formulario vacio para construir el html
+    context = {
+        'form': formulario,
+        'mensaje': mensaje
+    }
+
+    return render(request, "app_blog/registro.html", context=context)    
+
+def login_request(request):
+    next_url = request.GET.get('next')
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+            user = authenticate(username=usuario, password=contra)
+            if user:
+                login(request=request, user=user)
+                if next_url:
+                    return redirect(next_url)
+                return render(request, "app_blog/about.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request,"app_blog/about.html", {"mensaje":"Error, datos incorrectos"})
+        else:
+            return render(request,"app_blog/about.html", {"mensaje":"Error, formulario erroneo"})
+
+    form = AuthenticationForm()
+    return render(request,"app_blog/login2.html", {'form':form} )
+
+
+class CustomLogoutView(LogoutView):
+    template_name = 'app_blog/logout.html'
+    next_page = reverse_lazy('home')

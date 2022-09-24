@@ -37,7 +37,7 @@
             <td>{{usuario.nombre_usuario}}</td>
             <td>{{usuario.correo}}</td>
             <td>{{usuario.fecha_creacion}}</td>
-            <td><a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-outline-light">Editar</a></td>
+            <td><a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-outline-warning">Editar</a></td>
             <td><a href="{% url 'eliminar_usuario' usuario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar a {{usuario.nombre}} {{usuario.apellido}}?');">Eliminar</a></td>
         </tr>
         {% endfor %}

@@ -31,4 +31,7 @@ urlpatterns = [
 
     #URL's my account
     path('login/', views.login, name="login"),
+    path('login2/', views.login_request, name = 'login2'),
+    path('register/', views.register, name = 'register'),
+    path('logout/', views.CustomLogoutView.as_view(), name = 'logout'),
 ]

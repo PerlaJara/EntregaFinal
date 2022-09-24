@@ -1,5 +1,7 @@
 from dataclasses import field
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from app_blog.models import *
 from ckeditor.widgets import CKEditorWidget
 
@@ -22,3 +24,12 @@ class ComentarioFormulario(forms.Form):
     comentario = forms.CharField(widget=forms.Textarea)
     id_usuario = forms.ModelChoiceField(queryset=Usuario.objects.all())
     post_id = forms.ModelChoiceField(queryset=Post.objects.all())
+
+
+class UserRegisterForm(UserCreationForm):
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
