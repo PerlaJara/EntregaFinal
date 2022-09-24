@@ -162,7 +162,42 @@ def comentario_formulario(request):
             data = formulario.cleaned_data
             comentario = Comentario(nombre_usuario=data['nombre_usuario'], comentario=data['comentario'],id_usuario=data['id_usuario'], post_id=data['post_id'])
             comentario.save()
-            return render(request, "app_blog/base.html", {"exitoso": True})
+            return render(request, "app_blog/crear_comentario.html", {"exitoso": True})
     else:
         formulario= ComentarioFormulario()
     return render(request, "app_blog/crear_comentario.html", {"formulario": formulario})
+
+
+def editar_comentario(request, id):
+    # Recibe param profesor id, con el que obtenemos el profesor
+    comentario = Comentario.objects.get(id=id)
+
+    if request.method == 'POST':
+        formulario = ComentarioFormulario(request.POST, request.FILES)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            comentario.nombre_usuario = data['nombre_usuario']
+            comentario.comentario = data['comentario']
+            comentario.id_usuario = data['id_usuario']
+            comentario.post_id = data['post_id']
+
+            comentario.save()
+
+            return redirect(reverse('comentario'))
+    else:
+        inicial = {
+            'nombre_usuario': comentario.nombre_usuario,
+            'comentario': comentario.comentario,
+            'id_usuario': comentario.id_usuario,
+            'post_id': comentario.post_id,
+        }
+        formulario = ComentarioFormulario(initial=inicial)
+    return render(request, "app_blog/crear_comentario.html", {"formulario": formulario})
+
+
+def eliminar_comentario(request, id):
+    comentario = Comentario.objects.get(id=id)
+    comentario.delete()
+    return redirect(reverse('comentario'))    

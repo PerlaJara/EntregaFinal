@@ -23,6 +23,8 @@ urlpatterns = [
     #URL's comentario
     path('comentario/', views.comentario, name="comentario"),
     path('crear_comentario/', views.comentario_formulario, name="crear_comentario"),
+    path('editar_comentario/<int:id>/', views.editar_comentario, name="editar_comentario"),
+    path('eliminar_comentario/<int:id>/', views.eliminar_comentario, name="eliminar_comentario"),
 
     #URL's about
     path('about/', views.about, name="about"),

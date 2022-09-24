@@ -29,6 +29,8 @@
             <td>{{comentario.comentario}}</td>
             <td>{{comentario.id_usuario}}</td>
             <td>{{comentario.post_id}}</td>
+            <td><a href="{% url 'editar_comentario' comentario.id %}" class="btn btn-outline-light">Editar</a></td>
+            <td><a href="{% url 'eliminar_comentario' comentario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente comentario?: Id {{comentario.id}} | post: {{comentario.post_id}}');">Eliminar</a></td>
         </tr>
         {% endfor %}
     </tbody>
