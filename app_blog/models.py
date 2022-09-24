@@ -17,7 +17,7 @@ class Usuario(models.Model):
 class Post(models.Model):
     titulo = models.CharField(max_length=50)
     subtitulo = models.CharField(max_length=250)
-    imagen = models.ImageField(upload_to='posts', null=True, blank = True)
+    imagen = models.ImageField( null=True, blank = True, upload_to='posts')
     cuerpo = RichTextField(blank=True, null=True)
     autor = models.CharField(max_length=50)
     fecha_creacion = models.DateField(auto_now_add=True)

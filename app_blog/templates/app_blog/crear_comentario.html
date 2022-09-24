@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="text-center pt-5">
+            <h1>Crear comentario</h1>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+</div>
+{% endblock changing_content %}

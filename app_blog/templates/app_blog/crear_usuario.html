@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block changing_content %}
+    <div class="row">
+        <div class="row justify-content-end">
+            <div class="col-4 text-center">
+                <a class="btn btn-outline-success" href="{% url 'home' %}" role="button">Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="text-center pt-5">
+                <h1> Crear usuario</h1>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ formulario.as_p }}
+                </div>
+                <input type="submit" value="Enviar" />
+            </form>
+        </div>
+    </div>
+
+{% endblock changing_content %}

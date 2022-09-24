@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+
+<h1>Comentarios</h1>
+<a class="btn btn-outline-primary" href="{% url 'crear_comentario' %}" role="button">Crear comentario</a>
+<br><br>
+<h3>Comentarios:</h3>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>
+                <strong>Nombre usuario</strong>
+            </th>
+            <th>
+                <strong>Comentario</strong>
+            </th>
+            <th>
+                <strong>Id usuario</strong>
+            </th>
+            <th>
+                <strong>Id post</strong>
+            </th>
+        </tr>
+        {% for comentario in comentarios %}
+        <tr>
+            <td>{{comentario.nombre_usuario}}</td>
+            <td>{{comentario.comentario}}</td>
+            <td>{{comentario.id_usuario}}</td>
+            <td>{{comentario.post_id}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock changing_content %}

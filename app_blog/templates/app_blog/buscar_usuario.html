@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+    <div class="row">
+        <div class="row justify-content-end">
+            <div class="col-4 text-center">
+                <a class="btn btn-outline-success" href="{% url 'usuario' %}" role="button">Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div class="text-center pt-5">
+                <h1>Busqueda de usuarios</h1>
+            </div>
+
+            <form action="{% url 'buscar_usuario' %}" method="GET">
+                {% csrf_token %}
+                <input style="width: 100%;" type="text" placeholder="Ingrese un Nombre, Apellido o Username" name="valor">
+                <br />
+                <br />
+                <div class="text-center">
+                    <input type="submit" value="Buscar" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock changing_content %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+
+<div class="row" style="margin-bottom: 5%; height: 100%;">
+    <div class="col-md-8 offset-md-2">
+        {% for blog in blogs %}
+        <div class="row" style="border-bottom: 1px solid black; padding: 20px; margin: 20px auto 0 auto;">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12" style="color:#033B8D">
+                        <h2>{{blog.titulo}}</h2>  
+                    </div>
+                    <div class="col-md-12" style="color:#ffffff">
+                        <p>{{blog.subtitulo}}</p>
+                        {% if blog.imagen %}
+                            <img src = "{{blog.imagen.url}}">
+                        {% endif %}    
+                    </div>
+                    <div class="col-md-12" style="width: 250px;
+                    margin: 0 0 1em 0;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 4;
+                    -webkit-box-orient: vertical;">
+                        <p>{{blog.contenido}}</p>
+                    </div>
+                    <div class="col-md-12" style="font-size: 10pt;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>{{blog.fecha_creacion}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-outline-primary">Read more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock changing_content %}
