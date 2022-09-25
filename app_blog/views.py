@@ -26,10 +26,6 @@ def blog(request):
 
     return render(request, "app_blog/inicio.html", {'blogs' : blogs})
 
-#def login(request):
-#    return render(request, "app_blog/login.html")
-
-
 # USUARIO
 
 @login_required
@@ -253,7 +249,7 @@ def login_request(request):
             return render(request,"app_blog/about.html", {"mensaje":"Error, formulario erroneo"})
 
     form = AuthenticationForm()
-    return render(request,"app_blog/login2.html", {'form':form} )
+    return render(request,"app_blog/login.html", {'form':form} )
 
 
 class CustomLogoutView(LogoutView):

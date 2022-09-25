@@ -39,9 +39,6 @@ html {
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">My account</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'usuario' %}">Usuarios</a>
                     </li>
                     <li class="nav-item">
@@ -51,7 +48,7 @@ html {
                         <a class="nav-link" href="{% url 'comentario' %}">Comentarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login2' %}">Login</a>
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
                     {% if user.is_authenticated %}
                 <div class="dropdown">
