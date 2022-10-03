@@ -17,7 +17,7 @@ class PostFormulario(forms.Form):
     imagen = forms.ImageField()
     cuerpo = forms.CharField(widget=CKEditorWidget())
     autor = forms.CharField(max_length=50)
-    usuario_id = forms.ModelChoiceField(queryset=Usuario.objects.all())
+
 
 class ComentarioFormulario(forms.Form):
     nombre_usuario = forms.CharField(max_length=100)
@@ -27,9 +27,29 @@ class ComentarioFormulario(forms.Form):
 
 
 class UserRegisterForm(UserCreationForm):
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+
+class UserUpdateForm(forms.ModelForm):
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
+
+class AvatarFormulario(forms.ModelForm):
+
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
+
+class AvatarUpdateFormulario(forms.ModelForm):
+
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

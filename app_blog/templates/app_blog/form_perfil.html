@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4" style="padding-top: 15%; padding-bottom: 10%;">
+        <p>Tu username es <b>{{ object.username }}</b></p>
+
+        <h3>Editar datos:</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Salvar"/>
+        </form>
+    </div>
+</div>
+{% endblock changing_content %}

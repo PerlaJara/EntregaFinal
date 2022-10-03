@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+<div class="row" style="margin-top: 5%;">
+    <div class="col-md-8 offset-md-2">
+        <a class="btn btn-outline-success" style="float: right;" href="/" role="button">Regresar</a>
+    </div>
+    <div class="col-md-8 offset-md-2" style="margin-bottom: 10%; text-align:center;">
+        <div style="text-align: left; color: rgb(66, 65, 65); font-size: 10pt;">
+            <span>{{post.fecha_creacion}}</span>
+        </div>
+        <div>
+            <h2>{{post.titulo}}</h2>
+        </div>
+        <br/>
+        <br>
+        <div style=" text-align:left;">
+            <h6>{{post.subtitulo}}</h6>
+        </div>
+        <br/>
+        <div>
+            <img width="800" height="450" src = "/media/{{post.imagen}}">
+        </div>
+        <br>
+        <div style="text-align: justify;">
+            {{post.cuerpo|safe}}
+        </div>
+        <div style="text-align: right;">
+            <h6><i>{{post.autor}}</i></h6>
+        </div>
+    </div>
+</div>
+{% endblock changing_content %}

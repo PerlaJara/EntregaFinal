@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block changing_content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Registrarse" />
-  </form>
+<div class="row" style="margin-top: 10%;">
+  <div class="col-md-4 offset-md-4" style="text-align: center; padding-bottom:20px">
+    <h2>Create an account</h2>
+  </div>
+  <div class="col-md-4 offset-md-4">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Save" />
+    </form>
+  </div>
+</div>
 {% endblock changing_content %}

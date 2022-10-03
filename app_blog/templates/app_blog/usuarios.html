@@ -2,46 +2,49 @@
 
 {% block changing_content %}
 
-<h1>Usuarios</h1>
-<a class="btn btn-outline-primary" href="{% url 'crear_usuario' %}" role="button">Crear usuario</a>
-<br />
-<br />
-<a class="btn btn-outline-info" href="{% url 'buscar_usuario_form' %}" role="button">Buscar Usuario</a>
+<div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+    <div class="col-md-12">
 
-<br><br>
-<h3>Usuarios:</h3>
+        <h1>Usuarios</h1>
+        <a class="btn btn-outline-info" href="{% url 'buscar_usuario_form' %}" role="button">Buscar Usuario</a>
+        <br><br>
 
-<table class="table table-striped">
-    <tbody>
-        <tr>
-            <th>
-                <strong>Nombre</strong>
-            </th>
-            <th>
-                <strong>Apellido</strong>
-            </th>
-            <th>
-                <strong>Nombre de usuario</strong>
-            </th>
-            <th>
-                <strong>Correo</strong>
-            </th>
-            <th>
-                <strong>Fecha de creación</strong>
-            </th>
-        </tr>
-        {% for usuario in usuarios %}
-        <tr>
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.apellido}}</td>
-            <td>{{usuario.nombre_usuario}}</td>
-            <td>{{usuario.correo}}</td>
-            <td>{{usuario.fecha_creacion}}</td>
-            <td><a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-outline-warning">Editar</a></td>
-            <td><a href="{% url 'eliminar_usuario' usuario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar a {{usuario.nombre}} {{usuario.apellido}}?');">Eliminar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>
+                        <strong>Nombre</strong>
+                    </th>
+                    <th>
+                        <strong>Apellido</strong>
+                    </th>
+                    <th>
+                        <strong>Nombre de usuario</strong>
+                    </th>
+                    <th>
+                        <strong>Correo</strong>
+                    </th>
+                    <th>
+                        <strong>Fecha de creación</strong>
+                    </th>
+                    <th>
+                        <strong>Delete</strong>
+                    </th>
+                </tr>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.first_name}}</td>
+                    <td>{{usuario.last_name}}</td>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.date_joined}}</td>
+                    <td><a href="{% url 'eliminar_usuario' usuario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar a {{usuario.nombre}} {{usuario.apellido}}?');">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 {% endblock changing_content %}

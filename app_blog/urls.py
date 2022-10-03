@@ -8,8 +8,7 @@ urlpatterns = [
 
     #URL's user
     path('usuario/', views.usuario, name="usuario"),
-    path('crear_usuario/', views.usuario_formulario, name="crear_usuario"),
-    path('editar_usuario/<int:id>/', views.editar_usuario, name="editar_usuario"),
+
     path('eliminar_usuario/<int:id>/', views.eliminar_usuario, name="eliminar_usuario"),
     path('buscar_usuario_form/', views.buscar_usuario_form, name="buscar_usuario_form"),
     path('buscar_usuario/', views.buscar_usuario, name="buscar_usuario"),
@@ -19,6 +18,7 @@ urlpatterns = [
     path('crear_post/', views.post_formulario, name="crear_post"),
     path('editar_post/<int:id>/', views.editar_post, name="editar_post"),
     path('eliminar_post/<int:id>/', views.eliminar_post, name="eliminar_post"),
+    path('pages/<int:id>/', views.show_post, name="pages"),
 
     #URL's comentario
     path('comentario/', views.comentario, name="comentario"),
@@ -33,4 +33,9 @@ urlpatterns = [
     path('login/', views.login_request, name = 'login'),
     path('register/', views.register, name = 'register'),
     path('logout/', views.CustomLogoutView.as_view(), name = 'logout'),
+
+    #URL's profile
+    path('editar_perfil/', views.ProfileUpdateView.as_view(), name="editar_perfil"),
+    path('agregar_avatar/', views.agregar_avatar, name="agregar_avatar"),
+    path('editar_avatar/', views.avatar_update, name="editar_avatar"),
 ]

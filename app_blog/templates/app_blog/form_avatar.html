@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block changing_content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4" style="padding-top: 15%; padding-bottom: 10%;">
+
+        <h3>Cargar Avatar</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p  }}
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+</div>
+{% endblock changing_content %}

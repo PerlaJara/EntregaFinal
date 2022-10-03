@@ -2,38 +2,43 @@
 
 {% block changing_content %}
 
-<h1>Comentarios</h1>
-<a class="btn btn-outline-primary" href="{% url 'crear_comentario' %}" role="button">Crear comentario</a>
-<br><br>
-<h3>Comentarios:</h3>
+<div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+    <div class="col-md-12">
 
-<table class="table table-striped">
-    <tbody>
-        <tr>
-            <th>
-                <strong>Nombre usuario</strong>
-            </th>
-            <th>
-                <strong>Comentario</strong>
-            </th>
-            <th>
-                <strong>Id usuario</strong>
-            </th>
-            <th>
-                <strong>Id post</strong>
-            </th>
-        </tr>
-        {% for comentario in comentarios %}
-        <tr>
-            <td>{{comentario.nombre_usuario}}</td>
-            <td>{{comentario.comentario}}</td>
-            <td>{{comentario.id_usuario}}</td>
-            <td>{{comentario.post_id}}</td>
-            <td><a href="{% url 'editar_comentario' comentario.id %}" class="btn btn-outline-warning">Editar</a></td>
-            <td><a href="{% url 'eliminar_comentario' comentario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente comentario?: Id {{comentario.id}} | post: {{comentario.post_id}}');">Eliminar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <h1>Comentarios</h1>
+        <a class="btn btn-outline-primary" href="{% url 'crear_comentario' %}" role="button">Crear comentario</a>
+        <br><br>
+
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>
+                        <strong>Nombre usuario</strong>
+                    </th>
+                    <th>
+                        <strong>Comentario</strong>
+                    </th>
+                    <th>
+                        <strong>Id usuario</strong>
+                    </th>
+                    <th>
+                        <strong>Id post</strong>
+                    </th>
+                </tr>
+                {% for comentario in comentarios %}
+                <tr>
+                    <td>{{comentario.nombre_usuario}}</td>
+                    <td>{{comentario.comentario}}</td>
+                    <td>{{comentario.id_usuario}}</td>
+                    <td>{{comentario.post_id}}</td>
+                    <td><a href="{% url 'editar_comentario' comentario.id %}" class="btn btn-outline-warning">Editar</a></td>
+                    <td><a href="{% url 'eliminar_comentario' comentario.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente comentario?: Id {{comentario.id}} | post: {{comentario.post_id}}');">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 {% endblock changing_content %}

@@ -2,50 +2,59 @@
 
 {% block changing_content %}
 
-<h1>Posts</h1>
-<a class="btn btn-outline-primary" href="{% url 'crear_post' %}" role="button">Crear post</a>
-<br><br>
-<h3>Posts:</h3>
+<div class="row" style="margin-top: 25px; margin-bottom: 25px;">
+    <div class="col-md-12">
 
-<table class="table table-striped">
-    <tbody>
-        <tr>
-            <th>
-                <strong>Título</strong>
-            </th>
-            <th>
-                <strong>Subtítulo</strong>
-            </th>
-            <th>
-                <strong>Imagen</strong>
-            </th>
-            <th>
-                <strong>Cuerpo</strong>
-            </th>
-            <th>
-                <strong>Autor</strong>
-            </th>
-            <th>
-                <strong>Fecha creación</strong>
-            </th>
-            <th>
-                <strong>Id usuario</strong>
-            </th>
-        </tr>
-        {% for post in posts %}
-        <tr>
-            <td>{{post.titulo}}</td>
-            <td>{{post.subtitulo}}</td>
-            <td>{{post.imagen}}</td>
-            <td>{{post.cuerpo}}</td>
-            <td>{{post.autor}}</td>
-            <td>{{usuario.fecha_creacion}}</td>
-            <td>{{post.usuario_id}}</td>
-            <td><a href="{% url 'editar_post' post.id %}" class="btn btn-outline-warning">Editar</a></td>
-            <td><a href="{% url 'eliminar_post' post.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente post?: {{post.titulo}}');">Eliminar</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <h1>Posts</h1>
+        <a class="btn btn-outline-primary" href="{% url 'crear_post' %}" role="button">Crear post</a>
+        <br><br>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>
+                        <strong>Título</strong>
+                    </th>
+                    <th>
+                        <strong>Subtítulo</strong>
+                    </th>
+                    <th>
+                        <strong>Imagen</strong>
+                    </th>
+                    <th>
+                        <strong>Cuerpo</strong>
+                    </th>
+                    <th>
+                        <strong>Autor</strong>
+                    </th>
+                    <th>
+                        <strong>Fecha creación</strong>
+                    </th>
+                    <th>
+                        <strong>Id usuario</strong>
+                    </th>
+                    <th>
+                        <strong>Edit</strong>
+                    </th>
+                    <th>
+                        <strong>Delete</strong>
+                    </th>
+                </tr>
+                {% for post in posts %}
+                <tr>
+                    <td>{{post.titulo}}</td>
+                    <td>{{post.subtitulo}}</td>
+                    <td>{{post.imagen}}</td>
+                    <td>{{post.cuerpo|truncatechars:100}}</td>
+                    <td>{{post.autor}}</td>
+                    <td>{{usuario.fecha_creacion}}</td>
+                    <td>{{post.usuario_id}}</td>
+                    <td><a href="{% url 'editar_post' post.id %}" class="btn btn-outline-warning">Editar</a></td>
+                    <td><a href="{% url 'eliminar_post' post.id %}" class="btn btn-outline-danger" onclick="return confirm('¿Esta seguro que desea eliminar el siguiente post?: {{post.titulo}}');">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock changing_content %}

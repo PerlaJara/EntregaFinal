@@ -130,6 +130,12 @@ STATICFILES_DIRS = (
 #STATIC_ROOT = BASE_DIR/'static'
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+
 LOGIN_URL = 'login'
 
 # Default primary key field type
